@@ -1,29 +1,17 @@
-# http-exercicios
+# CRUD usando Vue.js, Axios e Firebase
 
-## Project setup
-```
-npm install
-```
+<h1 align="center">
+  <img src="./screenshots/screenshot_1.png">
+</h1>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Setup do Projeto
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Para rodar o projeto em sua máquina, siga os seguintes passos com um terminal aberto no diretório do projeto
 
-### Run your tests
 ```
-npm run test
-```
+# Instale as dependências
+$ yarn install
 
-### Lints and fixes files
+# Rode o projeto
+$ yarn serve
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
