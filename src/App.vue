@@ -1,14 +1,9 @@
 <template>
   <div id="app" class="container bg-light">
-    <h1>CRUD usando Vue.js, Axios e Firebase</h1>
+    <h1 class="pt-4">CRUD usando Vue.js, Axios e Firebase</h1>
     <b-card>
       <b-form-group label="Nome:">
-        <b-form-input
-          placeholder="Digite seu nome"
-          v-model="usuario.nome"
-          type="text"
-          size="lg"
-        ></b-form-input>
+        <b-form-input placeholder="Digite seu nome" v-model="usuario.nome" type="text" size="lg"></b-form-input>
       </b-form-group>
 
       <b-form-group label="Email:">
@@ -23,9 +18,7 @@
 
       <hr />
 
-      <b-button @click="salvarDados" class="w-100 mt-1" variant="info"
-        >Salvar
-      </b-button>
+      <b-button @click="salvarDados" class="w-100 mt-1" variant="info">Salvar</b-button>
     </b-card>
 
     <hr class="bg-dark" />
@@ -34,27 +27,21 @@
 
     <b-list-group>
       <b-list-group-item v-for="(usuario, id) in usuarios" :key="id">
-        <strong>Nome:</strong> {{ usuario.nome }} <br />
+        <strong>Nome:</strong>
+        {{ usuario.nome }}
+        <br />
 
-        <strong>E-mail:</strong> {{ usuario.email }} <br />
+        <strong>E-mail:</strong>
+        {{ usuario.email }}
+        <br />
 
-        <strong>ID:</strong> {{ id }} <br />
+        <strong>ID:</strong>
+        {{ id }}
+        <br />
 
-        <b-button
-          @click="carregarForm(id)"
-          class="mt-1 w-100"
-          variant="warning"
-        >
-          Editar
-        </b-button>
+        <b-button @click="carregarForm(id)" class="mt-1 w-100" variant="warning">Editar</b-button>
 
-        <b-button
-          @click="deletarUsuario(id)"
-          class="mt-1 w-100"
-          variant="danger"
-        >
-          Deletar
-        </b-button>
+        <b-button @click="deletarUsuario(id)" class="mt-1 w-100" variant="danger">Deletar</b-button>
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -69,8 +56,8 @@ export default {
 
     usuario: {
       nome: "",
-      email: "",
-    },
+      email: ""
+    }
   }),
 
   created() {
@@ -81,7 +68,7 @@ export default {
     limparForm() {
       this.usuario = {
         nome: "",
-        email: "",
+        email: ""
       };
 
       this.id = null;
@@ -101,22 +88,22 @@ export default {
             text:
               metodo == "patch"
                 ? "O usuário foi alterado com sucesso!"
-                : "O usuário foi salvo com sucesso!",
+                : "O usuário foi salvo com sucesso!"
           });
 
           this.obterUsuarios();
         })
-        .catch((err) => {
+        .catch(() => {
           this.$swal({
             icon: "error",
             title: "Ops...",
-            text: "Algum problema ocorreu durante a sua requisição :(",
+            text: "Algum problema ocorreu durante a sua requisição :("
           });
         });
     },
 
     obterUsuarios() {
-      this.$httpClient.get("usuarios.json").then((resp) => {
+      this.$httpClient.get("usuarios.json").then(resp => {
         this.usuarios = resp.data;
       });
     },
@@ -136,13 +123,13 @@ export default {
           cancel: "Cancelar",
           ok: {
             text: "Sim, tenho certeza",
-            value: true,
-          },
+            value: true
+          }
         },
-        dangerMode: true,
-      }).then((value) => {
+        dangerMode: true
+      }).then(value => {
         if (value) {
-          this.$httpClient.delete(`/usuarios/${userID}.json`).then((_) => {
+          this.$httpClient.delete(`/usuarios/${userID}.json`).then(() => {
             this.limparForm();
             this.obterUsuarios();
           });
@@ -150,14 +137,14 @@ export default {
           this.$swal({
             icon: "success",
             title: "Okay",
-            text: "O usuário foi excluído com sucesso!",
+            text: "O usuário foi excluído com sucesso!"
           });
         } else {
           this.$swal("O usuário não foi excluído :)");
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
